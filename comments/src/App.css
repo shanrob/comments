@@ -25,7 +25,7 @@
   padding: 10px;
   background-color: rgb(242, 240, 240);
   border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid thistle
 }
 
 .comments-list {
@@ -45,7 +45,6 @@
   width: 400px;
   column-gap: 5px;
   font-size: small;
-  max-height: 100px;
   align-items: center;
   justify-content: space-between;
   padding: 10px;
@@ -65,4 +64,38 @@
   align-items: center;
   justify-content: center;
   background-color: thistle;
+}
+
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  align-items: center;
+  background-color: rgb(242, 240, 240);
+  padding-top: 20px;
+  height: 100%
+}
+
+.skeleton-div {
+  display: flex;
+  width: 400px;
+  min-height: 45px;
+  column-gap: 5px;
+  font-size: small;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: rgb(199, 197, 197);
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); 
+  animation: skeleton-loading 0.75s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: rgb(178, 176, 176);
+  }
+  100% {
+    background-color: rgb(234, 231, 231);
+  }
 }

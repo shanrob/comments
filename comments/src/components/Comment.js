@@ -62,15 +62,14 @@ function Comment(props) {
             type="text"
             ref={inputRef}
             name="edit-comment"
-            defaultValue={props.comment.commentText}
+            defaultValue={props.comment.fact}
             onBlur={handleInputBlur}
             onChange={handleInputChange}
           />
         </form>
       ) : (
         <div style={{ textAlign: "left" }}>
-          <p>{props.comment.commentText}</p>
-          <p>{formatDate(props.comment.commentDate)}</p>
+          <p>{props.comment.fact}</p>
         </div>
       )}
       <div className="comment-buttons">

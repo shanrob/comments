@@ -3,53 +3,24 @@ import React from "react";
 import Header from "./components/Header";
 import CommentsList from "./components/CommentsList";
 import Footer from "./components/Footer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CommentInput from "./components/CommentInput";
+import Skeleton from "./components/Skeleton";
 
 function App() {
-  const testNestedObject = {
-    name: "Mansi",
-    age: 25,
-    department: {
-      name: "Customer Experience",
-      section: "Technical",
-      branch: {
-        name: "Bangalore",
-        timezone: "IST",
-      },
-    },
-    company: {
-      name: "SAP",
-      customers: ["Ford", "Nestle"],
-    },
-    skills: ["javascript", "node.js", "html"],
-  };
-  const flattenObject = (nestedComments) => {
-    let result = {};
-    for (const key in nestedComments) {
-      if (!nestedComments.hasOwnProperty(key)) {
-        continue;
-      }
-      if (
-        typeof nestedComments[key] === "object" &&
-        !Array.isArray(nestedComments[key])
-      ) {
-        const subFlatObject = flattenObject(nestedComments[key]);
-        for (const subKey in subFlatObject) {
-          result[key + "_" + subKey] = subFlatObject[subKey];
-        }
-      } else {
-        result[key] = nestedComments[key];
-      }
-    }
-    return result;
-  };
+  const [isLoading, setIsLoading] = useState(true);
+  async function getData() {
+    setIsLoading(true);
+    const response = await fetch("https://catfact.ninja/facts");
+    const data = await response.json();
+    setComments(data.data);
+    setIsLoading(false);
+  }
 
-  console.log("Nested object before flattening: ", testNestedObject);
-  const flattenedObject = flattenObject(testNestedObject);
-  console.log("Flattened object: ", flattenedObject);
+  useEffect(() => {
+    getData();
+  }, []);
 
-  const dummyFlatComments = ["Comment 1", "Comment 2", "Comment 3"];
   const dummyNestedComments = [
     {
       commentText: "Comment 1",
@@ -86,13 +57,17 @@ function App() {
     },
   ];
 
-  const [comments, setComments] = useState(dummyNestedComments);
+  const [comments, setComments] = useState([]);
 
   return (
     <div className="App">
       <Header />
       <CommentInput comments={comments} setComments={setComments} />
-      <CommentsList comments={comments} setComments={setComments} />
+      {isLoading ? (
+        <Skeleton />
+      ) : (
+        <CommentsList comments={comments} setComments={setComments} />
+      )}
       <Footer />
     </div>
   );
