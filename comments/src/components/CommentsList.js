@@ -1,10 +1,15 @@
+import Comment from "./Comment";
+
 function CommentsList(props) {
   return (
     <div className="comments-list">
       {props.comments.map((comment, index) => (
-        <div key={index} className="comment">
-          {comment}
-        </div>
+        <Comment
+          key={index}
+          comment={comment}
+          setComments={props.setComments}
+          comments={props.comments}
+        />
       ))}
     </div>
   );

@@ -17,6 +17,17 @@
   background-color: thistle;
 }
 
+.comment-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+  padding: 10px;
+  background-color: rgb(242, 240, 240);
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
 .comments-list {
   flex: 1;
   overflow-y: auto;
@@ -30,11 +41,22 @@
 }
 
 .comment {
-  width: 300px;
+  display: flex;
+  width: 400px;
+  column-gap: 5px;
+  font-size: small;
+  max-height: 100px;
+  align-items: center;
+  justify-content: space-between;
   padding: 10px;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.comment-buttons {
+  display: flex;
+  column-gap: 5px;
 }
 
 .footer {
