@@ -11,6 +11,7 @@ import Pagination from "./components/Pagination";
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [comments, setComments] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   async function getData() {
     setIsLoading(true);
@@ -27,9 +28,6 @@ function App() {
     getData();
   }, []);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
-
   return (
     <div className="App">
       <Header />
@@ -37,14 +35,12 @@ function App() {
       {isLoading ? (
         <Skeleton />
       ) : (
-        <CommentsList comments={comments} setComments={setComments} />
+        <CommentsList
+          comments={comments.slice(currentPage * 10 - 10, currentPage * 10)}
+          setComments={setComments}
+        />
       )}
-      <Pagination
-        length={10}
-        postsPerPage={postsPerPage}
-        setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
-      />
+      <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} />
       <Footer />
     </div>
   );

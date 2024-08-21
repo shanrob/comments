@@ -33,8 +33,7 @@ function Comment(props) {
       if (comment === props.comment) {
         return {
           ...comment,
-          commentText: e.target.value,
-          commentDate: formatDate(Date.now()),
+          body: e.target.value,
         };
       }
       return comment;
@@ -63,7 +62,7 @@ function Comment(props) {
             type="text"
             ref={inputRef}
             name="edit-comment"
-            defaultValue={props.comment.fact}
+            defaultValue={props.comment.body}
             onBlur={handleInputBlur}
             onChange={handleInputChange}
           />
