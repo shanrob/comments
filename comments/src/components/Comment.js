@@ -56,6 +56,7 @@ function Comment(props) {
 
   return (
     <div className="comment">
+      <p>{props.index}</p>
       {isEditing ? (
         <form onSubmit={handleInputSubmit}>
           <input
@@ -69,7 +70,7 @@ function Comment(props) {
         </form>
       ) : (
         <div style={{ textAlign: "left" }}>
-          <p>{props.comment.fact}</p>
+          <p>{props.comment.body}</p>
         </div>
       )}
       <div className="comment-buttons">

@@ -6,6 +6,7 @@ function CommentsList(props) {
       {props.comments.map((comment, index) => (
         <Comment
           key={index}
+          index={index + 1}
           comment={comment}
           setComments={props.setComments}
           comments={props.comments}
